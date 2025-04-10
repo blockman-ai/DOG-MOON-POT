@@ -2,47 +2,59 @@ let walletConnected = false;
 
 async function connectWallet() {
     const provider = window.solana;
-    if (provider && provider.isPhantom) {
+    if (!provider || !provider.isPhantom) {
+        alert("Phantom Wallet not found! Please install it.");
+        return;
+    }
+
+    if (!walletConnected) {
         try {
-            if (!walletConnected) {
-                await provider.connect();
-                walletConnected = true;
-                document.getElementById('connectWalletBtn').innerText = 'Disconnect Phantom Wallet';
-                alert('Wallet connected successfully!');
-            } else {
-                await provider.disconnect();
-                walletConnected = false;
-                document.getElementById('connectWalletBtn').innerText = 'Connect Phantom Wallet';
-                alert('Wallet disconnected.');
-            }
-        } catch (error) {
-            alert('Error during wallet operation: ' + error.message);
+            await provider.connect();
+            walletConnected = true;
+            document.getElementById('connectWalletBtn').innerText = 'Disconnect Phantom Wallet';
+            alert('Connected: ' + provider.publicKey.toString());
+        } catch (err) {
+            alert('Failed to connect wallet: ' + err.message);
         }
     } else {
-        alert('Phantom wallet not detected! Install Phantom first.');
+        try {
+            await provider.disconnect();
+            walletConnected = false;
+            document.getElementById('connectWalletBtn').innerText = 'Connect Phantom Wallet';
+            alert('Wallet disconnected.');
+        } catch (err) {
+            alert('Failed to disconnect wallet: ' + err.message);
+        }
     }
 }
 
 async function submitEntry() {
-    if (!walletConnected) {
-        alert('Connect your wallet first!');
+    if (!walletConnected || !window.solana.publicKey) {
+        alert('Please connect your wallet first!');
         return;
     }
 
-    const transaction = {
-        fromPubkey: window.solana.publicKey.toString(),
-        toPubkey: 'YOUR_SOLANA_ADDRESS_HERE',
-        lamports: 10000000 // Adjust this according to DOG token or SOL value.
-    };
-
     try {
-        const { signature } = await window.solana.request({
-            method: 'signAndSendTransaction',
-            params: transaction
-        });
-        alert('Entry submitted successfully! TX Signature: ' + signature);
-    } catch (err) {
-        alert('Transaction failed: ' + err.message);
+        const connection = new solanaWeb3.Connection(solanaWeb3.clusterApiUrl('mainnet-beta'), 'confirmed');
+        const fromPubkey = window.solana.publicKey;
+        const toPubkey = new solanaWeb3.PublicKey('YOUR_SOLANA_ADDRESS_HERE'); // REPLACE CLEARLY!
+        const lamports = 10000000; // 0.01 SOL adjust for DOG if required
+
+        let transaction = new solanaWeb3.Transaction().add(
+            solanaWeb3.SystemProgram.transfer({ fromPubkey, toPubkey, lamports })
+        );
+
+        transaction.feePayer = fromPubkey;
+        let { blockhash } = await connection.getRecentBlockhash();
+        transaction.recentBlockhash = blockhash;
+
+        let signed = await window.solana.signTransaction(transaction);
+        let signature = await connection.sendRawTransaction(signed.serialize());
+        
+        await connection.confirmTransaction(signature, 'confirmed');
+        alert('Transaction successful! TXID: ' + signature);
+    } catch (error) {
+        alert('Transaction failed: ' + error.message);
     }
 }
 
