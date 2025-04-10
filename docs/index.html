@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>DOG MOON POT</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@600&family=Inter&display=swap" rel="stylesheet">
+    <style>
+        body {
+            background-color: #000;
+            color: #00ffee;
+            font-family: 'Orbitron', sans-serif;
+            margin: 0;
+            padding: 20px;
+            text-align: center;
+        }
+        .card {
+            background: rgba(0, 255, 204, 0.06);
+            border: 1px solid #00ffee33;
+            border-radius: 18px;
+            padding: 20px;
+            margin: 15px auto;
+            max-width: 420px;
+            box-shadow: 0 0 25px #00ffee33;
+            transition: 0.3s;
+        }
+        .card:hover { box-shadow: 0 0 40px #00ffee88; }
+        button {
+            background-color: #00ffee;
+            color: #000;
+            padding: 12px 22px;
+            border: none;
+            border-radius: 12px;
+            cursor: pointer;
+            box-shadow: 0 0 10px #00ffee99;
+            font-family: 'Orbitron';
+        }
+        button:hover { background-color: #00ffaa; }
+        .timer { font-size: 1.6em; margin-bottom: 10px; }
+        input { padding: 10px; margin-top: 10px; border-radius: 8px; border: 1px solid #00ffee44; background: #111; color: #00ffee; font-family: 'Inter'; }
+    </style>
+</head>
+<body>
+
+<h1>DOG MOON POT</h1>
+
+<div class="card">
+    <div id="timer" class="timer">24:00:00</div>
+    <button id="connectWallet">Connect Phantom Wallet</button>
+    <div id="connectedAddress"></div>
+    <button id="enterPot" style="display:none;">Enter POT (Send 10 DOG)</button>
+</div>
+
+<div class="card">
+    <h3>Pot Breakdown</h3>
+    <p>Winner: 75%</p>
+    <p>Rollover: 20%</p>
+    <p>Creator Fee: 5%</p>
+</div>
+
+<div class="card">
+    <h3>Current Pot: <span id="currentPot">500 DOG</span></h3>
+    <p>Entries: <span id="entryCount">0</span></p>
+</div>
+
+<div class="card">
+    <h3>Past Winners</h3>
+    <div id="pastWinners">Coming Soon...</div>
+</div>
+
+<div class="card">
+    <h3>Get Notified</h3>
+    <input type="email" id="email" placeholder="Enter your email">
+    <button id="subscribe">Subscribe</button>
+</div>
+
+<script>
+// Timer Logic
+const timerEl = document.getElementById("timer");
+const end = new Date(Date.now() + 86400000);
+setInterval(() => {
+    const diff = end - Date.now();
+    const hrs = String(Math.floor(diff / 3600000)).padStart(2,'0');
+    const mins = String(Math.floor(diff % 3600000 / 60000)).padStart(2,'0');
+    const secs = String(Math.floor(diff % 60000 / 1000)).padStart(2,'0');
+    timerEl.textContent = `${hrs}:${mins}:${secs}`;
+}, 1000);
+
+// Phantom Wallet Integration
+let walletAddress = null;
+document.getElementById('connectWallet').onclick = async () => {
+    if(window.solana && window.solana.isPhantom){
+        const resp = await window.solana.connect();
+        walletAddress = resp.publicKey.toString();
+        document.getElementById('connectedAddress').textContent = walletAddress;
+        document.getElementById('enterPot').style.display = 'block';
+    } else { alert("Install Phantom Wallet!"); }
+};
+
+// Enter Pot
+const backendURL = "https://your-heroku-app-url.herokuapp.com";
+document.getElementById('enterPot').onclick = async () => {
+    const res = await fetch(`${backendURL}/enter`,{
+        method:'POST', headers:{'Content-Type':'application/json'}, body:JSON.stringify({wallet: walletAddress})
+    });
+    const data = await res.json();
+    if(data.success){ alert("Entered successfully!"); }
+    else { alert("Entry failed: " + data.error); }
+};
+
+// Email Subscription
+document.getElementById('subscribe').onclick = async () => {
+    const email = document.getElementById('email').value;
+    const res = await fetch(`${backendURL}/subscribe`,{
+        method:'POST', headers:{'Content-Type':'application/json'}, body:JSON.stringify({email})
+    });
+    const data = await res.json();
+    alert(data.success ? "Subscribed!" : "Subscription failed");
+};
+
+// Dynamic Pot Updates (Placeholder)
+fetch(`${backendURL}/status`).then(res=>res.json()).then(data=>{
+    document.getElementById("currentPot").textContent=`${data.pot} DOG`;
+    document.getElementById("entryCount").textContent=data.entries;
+    document.getElementById("pastWinners").innerHTML=data.winners.map(w=>`<p>${w}</p>`).join('');
+});
+</script>
+
+<script src="frontend-email-fix.js"></script>
+<script src="frontend-wallet-fix.js"></script>
+<script src="frontend-email-fix.js"></script>
+<script src="frontend-timer-fix.js"></script>
+<script src="timer.js"></script>
+</body>
+</html>
