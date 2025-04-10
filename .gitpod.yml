@@ -1,0 +1,12 @@
+image:
+  file: .gitpod.Dockerfile
+
+tasks:
+  - init: anchor build
+    command: echo "Anchor and Solana ready."
+
+ports:
+  - port: 8899
+    onOpen: ignore
+  - port: 8900
+    onOpen: ignore

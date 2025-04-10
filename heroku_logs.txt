@@ -1,0 +1,422 @@
+2025-04-09T20:47:01.364065+00:00 app[web.1]: from werkzeug.urls import url_quote
+2025-04-09T20:47:01.364065+00:00 app[web.1]: ImportError: cannot import name 'url_quote' from 'werkzeug.urls' (/app/.heroku/python/lib/python3.9/site-packages/werkzeug/urls.py)
+2025-04-09T20:47:01.364188+00:00 app[web.1]: [2025-04-09 20:47:01 +0000] [10] [INFO] Worker exiting (pid: 10)
+2025-04-09T20:47:01.403445+00:00 app[web.1]: [2025-04-09 20:47:01 +0000] [2] [INFO] Shutting down: Master
+2025-04-09T20:47:01.403477+00:00 app[web.1]: [2025-04-09 20:47:01 +0000] [2] [INFO] Reason: Worker failed to boot.
+2025-04-09T20:47:01.479659+00:00 heroku[web.1]: Process exited with status 3
+2025-04-09T20:47:01.509767+00:00 heroku[web.1]: State changed from starting to crashed
+2025-04-09T20:47:02.000000+00:00 app[api]: Build succeeded
+2025-04-09T20:47:09.474237+00:00 heroku[router]: at=error code=H10 desc="App crashed" method=GET path="/" host=dog-moon-pot-backend-2c3ced3d21d3.herokuapp.com request_id=8a607973-0332-4bb1-918a-147fb01393f1 fwd="73.226.98.202" dyno= connect= service= status=503 bytes= protocol=https
+2025-04-09T20:47:57.908467+00:00 heroku[web.1]: State changed from crashed to starting
+2025-04-09T20:47:59.446504+00:00 heroku[web.1]: Starting process with command `gunicorn app:app`
+2025-04-09T20:48:00.342644+00:00 app[web.1]: Python buildpack: Detected 512 MB available memory and 8 CPU cores.
+2025-04-09T20:48:00.342657+00:00 app[web.1]: Python buildpack: Defaulting WEB_CONCURRENCY to 2 based on the available memory.
+2025-04-09T20:48:00.697358+00:00 app[web.1]: [2025-04-09 20:48:00 +0000] [2] [INFO] Starting gunicorn 20.1.0
+2025-04-09T20:48:00.697377+00:00 app[web.1]: [2025-04-09 20:48:00 +0000] [2] [INFO] Listening at: http://0.0.0.0:25862 (2)
+2025-04-09T20:48:00.697378+00:00 app[web.1]: [2025-04-09 20:48:00 +0000] [2] [INFO] Using worker: sync
+2025-04-09T20:48:00.703165+00:00 app[web.1]: [2025-04-09 20:48:00 +0000] [9] [INFO] Booting worker with pid: 9
+2025-04-09T20:48:00.737773+00:00 heroku[web.1]: State changed from starting to up
+2025-04-09T20:48:00.799153+00:00 app[web.1]: [2025-04-09 20:48:00 +0000] [10] [INFO] Booting worker with pid: 10
+2025-04-09T20:48:01.068473+00:00 app[web.1]: [2025-04-09 20:48:01 +0000] [9] [ERROR] Exception in worker process
+2025-04-09T20:48:01.068485+00:00 app[web.1]: Traceback (most recent call last):
+2025-04-09T20:48:01.068486+00:00 app[web.1]: File "/app/.heroku/python/lib/python3.9/site-packages/gunicorn/arbiter.py", line 589, in spawn_worker
+2025-04-09T20:48:01.068487+00:00 app[web.1]: worker.init_process()
+2025-04-09T20:48:01.068487+00:00 app[web.1]: File "/app/.heroku/python/lib/python3.9/site-packages/gunicorn/workers/base.py", line 134, in init_process
+2025-04-09T20:48:01.068488+00:00 app[web.1]: self.load_wsgi()
+2025-04-09T20:48:01.068488+00:00 app[web.1]: File "/app/.heroku/python/lib/python3.9/site-packages/gunicorn/workers/base.py", line 146, in load_wsgi
+2025-04-09T20:48:01.068489+00:00 app[web.1]: self.wsgi = self.app.wsgi()
+2025-04-09T20:48:01.068489+00:00 app[web.1]: File "/app/.heroku/python/lib/python3.9/site-packages/gunicorn/app/base.py", line 67, in wsgi
+2025-04-09T20:48:01.068489+00:00 app[web.1]: self.callable = self.load()
+2025-04-09T20:48:01.068490+00:00 app[web.1]: File "/app/.heroku/python/lib/python3.9/site-packages/gunicorn/app/wsgiapp.py", line 58, in load
+2025-04-09T20:48:01.068490+00:00 app[web.1]: return self.load_wsgiapp()
+2025-04-09T20:48:01.068491+00:00 app[web.1]: File "/app/.heroku/python/lib/python3.9/site-packages/gunicorn/app/wsgiapp.py", line 48, in load_wsgiapp
+2025-04-09T20:48:01.068491+00:00 app[web.1]: return util.import_app(self.app_uri)
+2025-04-09T20:48:01.068491+00:00 app[web.1]: File "/app/.heroku/python/lib/python3.9/site-packages/gunicorn/util.py", line 359, in import_app
+2025-04-09T20:48:01.068492+00:00 app[web.1]: mod = importlib.import_module(module)
+2025-04-09T20:48:01.068492+00:00 app[web.1]: File "/app/.heroku/python/lib/python3.9/importlib/__init__.py", line 127, in import_module
+2025-04-09T20:48:01.068493+00:00 app[web.1]: return _bootstrap._gcd_import(name[level:], package, level)
+2025-04-09T20:48:01.068493+00:00 app[web.1]: File "<frozen importlib._bootstrap>", line 1030, in _gcd_import
+2025-04-09T20:48:01.068493+00:00 app[web.1]: File "<frozen importlib._bootstrap>", line 1007, in _find_and_load
+2025-04-09T20:48:01.068494+00:00 app[web.1]: File "<frozen importlib._bootstrap>", line 986, in _find_and_load_unlocked
+2025-04-09T20:48:01.068494+00:00 app[web.1]: File "<frozen importlib._bootstrap>", line 680, in _load_unlocked
+2025-04-09T20:48:01.068494+00:00 app[web.1]: File "<frozen importlib._bootstrap_external>", line 850, in exec_module
+2025-04-09T20:48:01.068495+00:00 app[web.1]: File "<frozen importlib._bootstrap>", line 228, in _call_with_frames_removed
+2025-04-09T20:48:01.068495+00:00 app[web.1]: File "/app/app.py", line 2, in <module>
+2025-04-09T20:48:01.068495+00:00 app[web.1]: from flask import Flask, jsonify, request
+2025-04-09T20:48:01.068496+00:00 app[web.1]: File "/app/.heroku/python/lib/python3.9/site-packages/flask/__init__.py", line 7, in <module>
+2025-04-09T20:48:01.068496+00:00 app[web.1]: from .app import Flask as Flask
+2025-04-09T20:48:01.068496+00:00 app[web.1]: File "/app/.heroku/python/lib/python3.9/site-packages/flask/app.py", line 28, in <module>
+2025-04-09T20:48:01.068496+00:00 app[web.1]: from . import cli
+2025-04-09T20:48:01.068497+00:00 app[web.1]: File "/app/.heroku/python/lib/python3.9/site-packages/flask/cli.py", line 18, in <module>
+2025-04-09T20:48:01.068497+00:00 app[web.1]: from .helpers import get_debug_flag
+2025-04-09T20:48:01.068498+00:00 app[web.1]: File "/app/.heroku/python/lib/python3.9/site-packages/flask/helpers.py", line 16, in <module>
+2025-04-09T20:48:01.068498+00:00 app[web.1]: from werkzeug.urls import url_quote
+2025-04-09T20:48:01.068501+00:00 app[web.1]: ImportError: cannot import name 'url_quote' from 'werkzeug.urls' (/app/.heroku/python/lib/python3.9/site-packages/werkzeug/urls.py)
+2025-04-09T20:48:01.068692+00:00 app[web.1]: [2025-04-09 20:48:01 +0000] [9] [INFO] Worker exiting (pid: 9)
+2025-04-09T20:48:01.071922+00:00 app[web.1]: [2025-04-09 20:48:01 +0000] [10] [ERROR] Exception in worker process
+2025-04-09T20:48:01.071924+00:00 app[web.1]: Traceback (most recent call last):
+2025-04-09T20:48:01.071925+00:00 app[web.1]: File "/app/.heroku/python/lib/python3.9/site-packages/gunicorn/arbiter.py", line 589, in spawn_worker
+2025-04-09T20:48:01.071925+00:00 app[web.1]: worker.init_process()
+2025-04-09T20:48:01.071925+00:00 app[web.1]: File "/app/.heroku/python/lib/python3.9/site-packages/gunicorn/workers/base.py", line 134, in init_process
+2025-04-09T20:48:01.071926+00:00 app[web.1]: self.load_wsgi()
+2025-04-09T20:48:01.071926+00:00 app[web.1]: File "/app/.heroku/python/lib/python3.9/site-packages/gunicorn/workers/base.py", line 146, in load_wsgi
+2025-04-09T20:48:01.071926+00:00 app[web.1]: self.wsgi = self.app.wsgi()
+2025-04-09T20:48:01.071927+00:00 app[web.1]: File "/app/.heroku/python/lib/python3.9/site-packages/gunicorn/app/base.py", line 67, in wsgi
+2025-04-09T20:48:01.071927+00:00 app[web.1]: self.callable = self.load()
+2025-04-09T20:48:01.071927+00:00 app[web.1]: File "/app/.heroku/python/lib/python3.9/site-packages/gunicorn/app/wsgiapp.py", line 58, in load
+2025-04-09T20:48:01.071927+00:00 app[web.1]: return self.load_wsgiapp()
+2025-04-09T20:48:01.071928+00:00 app[web.1]: File "/app/.heroku/python/lib/python3.9/site-packages/gunicorn/app/wsgiapp.py", line 48, in load_wsgiapp
+2025-04-09T20:48:01.071928+00:00 app[web.1]: return util.import_app(self.app_uri)
+2025-04-09T20:48:01.071928+00:00 app[web.1]: File "/app/.heroku/python/lib/python3.9/site-packages/gunicorn/util.py", line 359, in import_app
+2025-04-09T20:48:01.071928+00:00 app[web.1]: mod = importlib.import_module(module)
+2025-04-09T20:48:01.071929+00:00 app[web.1]: File "/app/.heroku/python/lib/python3.9/importlib/__init__.py", line 127, in import_module
+2025-04-09T20:48:01.071929+00:00 app[web.1]: return _bootstrap._gcd_import(name[level:], package, level)
+2025-04-09T20:48:01.071929+00:00 app[web.1]: File "<frozen importlib._bootstrap>", line 1030, in _gcd_import
+2025-04-09T20:48:01.071930+00:00 app[web.1]: File "<frozen importlib._bootstrap>", line 1007, in _find_and_load
+2025-04-09T20:48:01.071930+00:00 app[web.1]: File "<frozen importlib._bootstrap>", line 986, in _find_and_load_unlocked
+2025-04-09T20:48:01.071930+00:00 app[web.1]: File "<frozen importlib._bootstrap>", line 680, in _load_unlocked
+2025-04-09T20:48:01.071930+00:00 app[web.1]: File "<frozen importlib._bootstrap_external>", line 850, in exec_module
+2025-04-09T20:48:01.071931+00:00 app[web.1]: File "<frozen importlib._bootstrap>", line 228, in _call_with_frames_removed
+2025-04-09T20:48:01.071931+00:00 app[web.1]: File "/app/app.py", line 2, in <module>
+2025-04-09T20:48:01.071931+00:00 app[web.1]: from flask import Flask, jsonify, request
+2025-04-09T20:48:01.071931+00:00 app[web.1]: File "/app/.heroku/python/lib/python3.9/site-packages/flask/__init__.py", line 7, in <module>
+2025-04-09T20:48:01.071931+00:00 app[web.1]: from .app import Flask as Flask
+2025-04-09T20:48:01.071932+00:00 app[web.1]: File "/app/.heroku/python/lib/python3.9/site-packages/flask/app.py", line 28, in <module>
+2025-04-09T20:48:01.071932+00:00 app[web.1]: from . import cli
+2025-04-09T20:48:01.071932+00:00 app[web.1]: File "/app/.heroku/python/lib/python3.9/site-packages/flask/cli.py", line 18, in <module>
+2025-04-09T20:48:01.071932+00:00 app[web.1]: from .helpers import get_debug_flag
+2025-04-09T20:48:01.071933+00:00 app[web.1]: File "/app/.heroku/python/lib/python3.9/site-packages/flask/helpers.py", line 16, in <module>
+2025-04-09T20:48:01.071933+00:00 app[web.1]: from werkzeug.urls import url_quote
+2025-04-09T20:48:01.071933+00:00 app[web.1]: ImportError: cannot import name 'url_quote' from 'werkzeug.urls' (/app/.heroku/python/lib/python3.9/site-packages/werkzeug/urls.py)
+2025-04-09T20:48:01.072107+00:00 app[web.1]: [2025-04-09 20:48:01 +0000] [10] [INFO] Worker exiting (pid: 10)
+2025-04-09T20:48:01.118982+00:00 app[web.1]: [2025-04-09 20:48:01 +0000] [2] [WARNING] Worker with pid 10 was terminated due to signal 15
+2025-04-09T20:48:01.219149+00:00 app[web.1]: [2025-04-09 20:48:01 +0000] [2] [INFO] Shutting down: Master
+2025-04-09T20:48:01.219151+00:00 app[web.1]: [2025-04-09 20:48:01 +0000] [2] [INFO] Reason: Worker failed to boot.
+2025-04-09T20:48:01.295671+00:00 heroku[web.1]: Process exited with status 3
+2025-04-09T20:48:01.327179+00:00 heroku[web.1]: State changed from up to crashed
+2025-04-09T20:49:36.734606+00:00 heroku[router]: at=error code=H10 desc="App crashed" method=GET path="/" host=dog-moon-pot-backend-2c3ced3d21d3.herokuapp.com request_id=8e92f325-2962-4ddb-b164-b453818170cf fwd="73.226.98.202" dyno= connect= service= status=503 bytes= protocol=https
+2025-04-09T20:49:36.816670+00:00 heroku[router]: at=error code=H10 desc="App crashed" method=GET path="/favicon.ico" host=dog-moon-pot-backend-2c3ced3d21d3.herokuapp.com request_id=f6de9f60-ad66-4440-9536-bee769f8cc15 fwd="73.226.98.202" dyno= connect= service= status=503 bytes= protocol=https
+2025-04-09T20:51:23.834663+00:00 heroku[router]: at=error code=H10 desc="App crashed" method=GET path="/" host=dog-moon-pot-backend-2c3ced3d21d3.herokuapp.com request_id=88591006-6775-49f5-9288-5e6ad2497e29 fwd="73.226.98.202" dyno= connect= service= status=503 bytes= protocol=https
+2025-04-09T20:51:23.909563+00:00 heroku[router]: at=error code=H10 desc="App crashed" method=GET path="/favicon.ico" host=dog-moon-pot-backend-2c3ced3d21d3.herokuapp.com request_id=9d74624b-e078-4daa-83d8-c19f1ac1a1eb fwd="73.226.98.202" dyno= connect= service= status=503 bytes= protocol=https
+2025-04-09T20:59:04.014733+00:00 heroku[web.1]: State changed from crashed to starting
+2025-04-09T20:59:05.256969+00:00 heroku[web.1]: Starting process with command `gunicorn app:app`
+2025-04-09T20:59:05.777080+00:00 app[web.1]: Python buildpack: Detected 512 MB available memory and 8 CPU cores.
+2025-04-09T20:59:05.777194+00:00 app[web.1]: Python buildpack: Defaulting WEB_CONCURRENCY to 2 based on the available memory.
+2025-04-09T20:59:06.018224+00:00 app[web.1]: [2025-04-09 20:59:06 +0000] [2] [INFO] Starting gunicorn 20.1.0
+2025-04-09T20:59:06.018496+00:00 app[web.1]: [2025-04-09 20:59:06 +0000] [2] [INFO] Listening at: http://0.0.0.0:29912 (2)
+2025-04-09T20:59:06.018525+00:00 app[web.1]: [2025-04-09 20:59:06 +0000] [2] [INFO] Using worker: sync
+2025-04-09T20:59:06.020638+00:00 app[web.1]: [2025-04-09 20:59:06 +0000] [9] [INFO] Booting worker with pid: 9
+2025-04-09T20:59:06.076097+00:00 app[web.1]: [2025-04-09 20:59:06 +0000] [10] [INFO] Booting worker with pid: 10
+2025-04-09T20:59:06.253142+00:00 app[web.1]: [2025-04-09 20:59:06 +0000] [10] [ERROR] Exception in worker process
+2025-04-09T20:59:06.253144+00:00 app[web.1]: Traceback (most recent call last):
+2025-04-09T20:59:06.253144+00:00 app[web.1]: File "/app/.heroku/python/lib/python3.9/site-packages/gunicorn/arbiter.py", line 589, in spawn_worker
+2025-04-09T20:59:06.253145+00:00 app[web.1]: worker.init_process()
+2025-04-09T20:59:06.253145+00:00 app[web.1]: File "/app/.heroku/python/lib/python3.9/site-packages/gunicorn/workers/base.py", line 134, in init_process
+2025-04-09T20:59:06.253147+00:00 app[web.1]: self.load_wsgi()
+2025-04-09T20:59:06.253147+00:00 app[web.1]: File "/app/.heroku/python/lib/python3.9/site-packages/gunicorn/workers/base.py", line 146, in load_wsgi
+2025-04-09T20:59:06.253148+00:00 app[web.1]: self.wsgi = self.app.wsgi()
+2025-04-09T20:59:06.253148+00:00 app[web.1]: File "/app/.heroku/python/lib/python3.9/site-packages/gunicorn/app/base.py", line 67, in wsgi
+2025-04-09T20:59:06.253149+00:00 app[web.1]: self.callable = self.load()
+2025-04-09T20:59:06.253149+00:00 app[web.1]: File "/app/.heroku/python/lib/python3.9/site-packages/gunicorn/app/wsgiapp.py", line 58, in load
+2025-04-09T20:59:06.253149+00:00 app[web.1]: return self.load_wsgiapp()
+2025-04-09T20:59:06.253149+00:00 app[web.1]: File "/app/.heroku/python/lib/python3.9/site-packages/gunicorn/app/wsgiapp.py", line 48, in load_wsgiapp
+2025-04-09T20:59:06.253150+00:00 app[web.1]: return util.import_app(self.app_uri)
+2025-04-09T20:59:06.253150+00:00 app[web.1]: File "/app/.heroku/python/lib/python3.9/site-packages/gunicorn/util.py", line 359, in import_app
+2025-04-09T20:59:06.253150+00:00 app[web.1]: mod = importlib.import_module(module)
+2025-04-09T20:59:06.253150+00:00 app[web.1]: File "/app/.heroku/python/lib/python3.9/importlib/__init__.py", line 127, in import_module
+2025-04-09T20:59:06.253151+00:00 app[web.1]: return _bootstrap._gcd_import(name[level:], package, level)
+2025-04-09T20:59:06.253151+00:00 app[web.1]: File "<frozen importlib._bootstrap>", line 1030, in _gcd_import
+2025-04-09T20:59:06.253151+00:00 app[web.1]: File "<frozen importlib._bootstrap>", line 1007, in _find_and_load
+2025-04-09T20:59:06.253151+00:00 app[web.1]: File "<frozen importlib._bootstrap>", line 986, in _find_and_load_unlocked
+2025-04-09T20:59:06.253151+00:00 app[web.1]: File "<frozen importlib._bootstrap>", line 680, in _load_unlocked
+2025-04-09T20:59:06.253151+00:00 app[web.1]: File "<frozen importlib._bootstrap_external>", line 850, in exec_module
+2025-04-09T20:59:06.253152+00:00 app[web.1]: File "<frozen importlib._bootstrap>", line 228, in _call_with_frames_removed
+2025-04-09T20:59:06.253152+00:00 app[web.1]: File "/app/app.py", line 2, in <module>
+2025-04-09T20:59:06.253152+00:00 app[web.1]: from flask import Flask, jsonify, request
+2025-04-09T20:59:06.253152+00:00 app[web.1]: File "/app/.heroku/python/lib/python3.9/site-packages/flask/__init__.py", line 7, in <module>
+2025-04-09T20:59:06.253152+00:00 app[web.1]: from .app import Flask as Flask
+2025-04-09T20:59:06.253152+00:00 app[web.1]: File "/app/.heroku/python/lib/python3.9/site-packages/flask/app.py", line 28, in <module>
+2025-04-09T20:59:06.253153+00:00 app[web.1]: from . import cli
+2025-04-09T20:59:06.253153+00:00 app[web.1]: File "/app/.heroku/python/lib/python3.9/site-packages/flask/cli.py", line 18, in <module>
+2025-04-09T20:59:06.253153+00:00 app[web.1]: from .helpers import get_debug_flag
+2025-04-09T20:59:06.253153+00:00 app[web.1]: File "/app/.heroku/python/lib/python3.9/site-packages/flask/helpers.py", line 16, in <module>
+2025-04-09T20:59:06.253154+00:00 app[web.1]: from werkzeug.urls import url_quote
+2025-04-09T20:59:06.253161+00:00 app[web.1]: ImportError: cannot import name 'url_quote' from 'werkzeug.urls' (/app/.heroku/python/lib/python3.9/site-packages/werkzeug/urls.py)
+2025-04-09T20:59:06.253249+00:00 app[web.1]: [2025-04-09 20:59:06 +0000] [10] [INFO] Worker exiting (pid: 10)
+2025-04-09T20:59:06.254910+00:00 app[web.1]: [2025-04-09 20:59:06 +0000] [9] [ERROR] Exception in worker process
+2025-04-09T20:59:06.254911+00:00 app[web.1]: Traceback (most recent call last):
+2025-04-09T20:59:06.254912+00:00 app[web.1]: File "/app/.heroku/python/lib/python3.9/site-packages/gunicorn/arbiter.py", line 589, in spawn_worker
+2025-04-09T20:59:06.254912+00:00 app[web.1]: worker.init_process()
+2025-04-09T20:59:06.254912+00:00 app[web.1]: File "/app/.heroku/python/lib/python3.9/site-packages/gunicorn/workers/base.py", line 134, in init_process
+2025-04-09T20:59:06.254913+00:00 app[web.1]: self.load_wsgi()
+2025-04-09T20:59:06.254913+00:00 app[web.1]: File "/app/.heroku/python/lib/python3.9/site-packages/gunicorn/workers/base.py", line 146, in load_wsgi
+2025-04-09T20:59:06.254913+00:00 app[web.1]: self.wsgi = self.app.wsgi()
+2025-04-09T20:59:06.254913+00:00 app[web.1]: File "/app/.heroku/python/lib/python3.9/site-packages/gunicorn/app/base.py", line 67, in wsgi
+2025-04-09T20:59:06.254913+00:00 app[web.1]: self.callable = self.load()
+2025-04-09T20:59:06.254914+00:00 app[web.1]: File "/app/.heroku/python/lib/python3.9/site-packages/gunicorn/app/wsgiapp.py", line 58, in load
+2025-04-09T20:59:06.254914+00:00 app[web.1]: return self.load_wsgiapp()
+2025-04-09T20:59:06.254914+00:00 app[web.1]: File "/app/.heroku/python/lib/python3.9/site-packages/gunicorn/app/wsgiapp.py", line 48, in load_wsgiapp
+2025-04-09T20:59:06.254914+00:00 app[web.1]: return util.import_app(self.app_uri)
+2025-04-09T20:59:06.254914+00:00 app[web.1]: File "/app/.heroku/python/lib/python3.9/site-packages/gunicorn/util.py", line 359, in import_app
+2025-04-09T20:59:06.254914+00:00 app[web.1]: mod = importlib.import_module(module)
+2025-04-09T20:59:06.254915+00:00 app[web.1]: File "/app/.heroku/python/lib/python3.9/importlib/__init__.py", line 127, in import_module
+2025-04-09T20:59:06.254915+00:00 app[web.1]: return _bootstrap._gcd_import(name[level:], package, level)
+2025-04-09T20:59:06.254915+00:00 app[web.1]: File "<frozen importlib._bootstrap>", line 1030, in _gcd_import
+2025-04-09T20:59:06.254915+00:00 app[web.1]: File "<frozen importlib._bootstrap>", line 1007, in _find_and_load
+2025-04-09T20:59:06.254916+00:00 app[web.1]: File "<frozen importlib._bootstrap>", line 986, in _find_and_load_unlocked
+2025-04-09T20:59:06.254916+00:00 app[web.1]: File "<frozen importlib._bootstrap>", line 680, in _load_unlocked
+2025-04-09T20:59:06.254916+00:00 app[web.1]: File "<frozen importlib._bootstrap_external>", line 850, in exec_module
+2025-04-09T20:59:06.254916+00:00 app[web.1]: File "<frozen importlib._bootstrap>", line 228, in _call_with_frames_removed
+2025-04-09T20:59:06.254916+00:00 app[web.1]: File "/app/app.py", line 2, in <module>
+2025-04-09T20:59:06.254916+00:00 app[web.1]: from flask import Flask, jsonify, request
+2025-04-09T20:59:06.254917+00:00 app[web.1]: File "/app/.heroku/python/lib/python3.9/site-packages/flask/__init__.py", line 7, in <module>
+2025-04-09T20:59:06.254917+00:00 app[web.1]: from .app import Flask as Flask
+2025-04-09T20:59:06.254917+00:00 app[web.1]: File "/app/.heroku/python/lib/python3.9/site-packages/flask/app.py", line 28, in <module>
+2025-04-09T20:59:06.254917+00:00 app[web.1]: from . import cli
+2025-04-09T20:59:06.254917+00:00 app[web.1]: File "/app/.heroku/python/lib/python3.9/site-packages/flask/cli.py", line 18, in <module>
+2025-04-09T20:59:06.254917+00:00 app[web.1]: from .helpers import get_debug_flag
+2025-04-09T20:59:06.254918+00:00 app[web.1]: File "/app/.heroku/python/lib/python3.9/site-packages/flask/helpers.py", line 16, in <module>
+2025-04-09T20:59:06.254918+00:00 app[web.1]: from werkzeug.urls import url_quote
+2025-04-09T20:59:06.254918+00:00 app[web.1]: ImportError: cannot import name 'url_quote' from 'werkzeug.urls' (/app/.heroku/python/lib/python3.9/site-packages/werkzeug/urls.py)
+2025-04-09T20:59:06.255033+00:00 app[web.1]: [2025-04-09 20:59:06 +0000] [9] [INFO] Worker exiting (pid: 9)
+2025-04-09T20:59:06.283056+00:00 app[web.1]: Traceback (most recent call last):
+2025-04-09T20:59:06.283057+00:00 app[web.1]: File "/app/.heroku/python/lib/python3.9/site-packages/gunicorn/arbiter.py", line 209, in run
+2025-04-09T20:59:06.283199+00:00 app[web.1]: self.sleep()
+2025-04-09T20:59:06.283201+00:00 app[web.1]: File "/app/.heroku/python/lib/python3.9/site-packages/gunicorn/arbiter.py", line 357, in sleep
+2025-04-09T20:59:06.283271+00:00 app[web.1]: ready = select.select([self.PIPE[0]], [], [], 1.0)
+2025-04-09T20:59:06.283272+00:00 app[web.1]: File "/app/.heroku/python/lib/python3.9/site-packages/gunicorn/arbiter.py", line 242, in handle_chld
+2025-04-09T20:59:06.283323+00:00 app[web.1]: self.reap_workers()
+2025-04-09T20:59:06.283323+00:00 app[web.1]: File "/app/.heroku/python/lib/python3.9/site-packages/gunicorn/arbiter.py", line 525, in reap_workers
+2025-04-09T20:59:06.283396+00:00 app[web.1]: raise HaltServer(reason, self.WORKER_BOOT_ERROR)
+2025-04-09T20:59:06.283416+00:00 app[web.1]: gunicorn.errors.HaltServer: <HaltServer 'Worker failed to boot.' 3>
+2025-04-09T20:59:06.283416+00:00 app[web.1]: 
+2025-04-09T20:59:06.283417+00:00 app[web.1]: During handling of the above exception, another exception occurred:
+2025-04-09T20:59:06.283417+00:00 app[web.1]: 
+2025-04-09T20:59:06.283418+00:00 app[web.1]: Traceback (most recent call last):
+2025-04-09T20:59:06.283418+00:00 app[web.1]: File "/app/.heroku/python/bin/gunicorn", line 8, in <module>
+2025-04-09T20:59:06.283456+00:00 app[web.1]: sys.exit(run())
+2025-04-09T20:59:06.283457+00:00 app[web.1]: File "/app/.heroku/python/lib/python3.9/site-packages/gunicorn/app/wsgiapp.py", line 67, in run
+2025-04-09T20:59:06.283489+00:00 app[web.1]: WSGIApplication("%(prog)s [OPTIONS] [APP_MODULE]").run()
+2025-04-09T20:59:06.283490+00:00 app[web.1]: File "/app/.heroku/python/lib/python3.9/site-packages/gunicorn/app/base.py", line 231, in run
+2025-04-09T20:59:06.283542+00:00 app[web.1]: super().run()
+2025-04-09T20:59:06.283543+00:00 app[web.1]: File "/app/.heroku/python/lib/python3.9/site-packages/gunicorn/app/base.py", line 72, in run
+2025-04-09T20:59:06.283574+00:00 app[web.1]: Arbiter(self).run()
+2025-04-09T20:59:06.283574+00:00 app[web.1]: File "/app/.heroku/python/lib/python3.9/site-packages/gunicorn/arbiter.py", line 229, in run
+2025-04-09T20:59:06.283620+00:00 app[web.1]: self.halt(reason=inst.reason, exit_status=inst.exit_status)
+2025-04-09T20:59:06.283621+00:00 app[web.1]: File "/app/.heroku/python/lib/python3.9/site-packages/gunicorn/arbiter.py", line 342, in halt
+2025-04-09T20:59:06.283676+00:00 app[web.1]: self.stop()
+2025-04-09T20:59:06.283685+00:00 app[web.1]: File "/app/.heroku/python/lib/python3.9/site-packages/gunicorn/arbiter.py", line 393, in stop
+2025-04-09T20:59:06.283744+00:00 app[web.1]: time.sleep(0.1)
+2025-04-09T20:59:06.283753+00:00 app[web.1]: File "/app/.heroku/python/lib/python3.9/site-packages/gunicorn/arbiter.py", line 242, in handle_chld
+2025-04-09T20:59:06.283792+00:00 app[web.1]: self.reap_workers()
+2025-04-09T20:59:06.283792+00:00 app[web.1]: File "/app/.heroku/python/lib/python3.9/site-packages/gunicorn/arbiter.py", line 525, in reap_workers
+2025-04-09T20:59:06.283863+00:00 app[web.1]: raise HaltServer(reason, self.WORKER_BOOT_ERROR)
+2025-04-09T20:59:06.283877+00:00 app[web.1]: gunicorn.errors.HaltServer: <HaltServer 'Worker failed to boot.' 3>
+2025-04-09T20:59:06.347704+00:00 heroku[web.1]: Process exited with status 1
+2025-04-09T20:59:06.372075+00:00 heroku[web.1]: State changed from starting to crashed
+2025-04-09T21:11:00.977874+00:00 heroku[web.1]: State changed from crashed to starting
+2025-04-09T21:11:02.094983+00:00 heroku[web.1]: Starting process with command `gunicorn app:app`
+2025-04-09T21:11:02.622370+00:00 app[web.1]: Python buildpack: Detected 512 MB available memory and 8 CPU cores.
+2025-04-09T21:11:02.622439+00:00 app[web.1]: Python buildpack: Defaulting WEB_CONCURRENCY to 2 based on the available memory.
+2025-04-09T21:11:02.848845+00:00 app[web.1]: [2025-04-09 21:11:02 +0000] [2] [INFO] Starting gunicorn 20.1.0
+2025-04-09T21:11:02.849121+00:00 app[web.1]: [2025-04-09 21:11:02 +0000] [2] [INFO] Listening at: http://0.0.0.0:33058 (2)
+2025-04-09T21:11:02.849154+00:00 app[web.1]: [2025-04-09 21:11:02 +0000] [2] [INFO] Using worker: sync
+2025-04-09T21:11:02.851342+00:00 app[web.1]: [2025-04-09 21:11:02 +0000] [9] [INFO] Booting worker with pid: 9
+2025-04-09T21:11:02.947385+00:00 app[web.1]: [2025-04-09 21:11:02 +0000] [10] [INFO] Booting worker with pid: 10
+2025-04-09T21:11:03.077470+00:00 app[web.1]: [2025-04-09 21:11:03 +0000] [10] [ERROR] Exception in worker process
+2025-04-09T21:11:03.077473+00:00 app[web.1]: Traceback (most recent call last):
+2025-04-09T21:11:03.077475+00:00 app[web.1]: File "/app/.heroku/python/lib/python3.9/site-packages/gunicorn/arbiter.py", line 589, in spawn_worker
+2025-04-09T21:11:03.077476+00:00 app[web.1]: worker.init_process()
+2025-04-09T21:11:03.077477+00:00 app[web.1]: File "/app/.heroku/python/lib/python3.9/site-packages/gunicorn/workers/base.py", line 134, in init_process
+2025-04-09T21:11:03.077478+00:00 app[web.1]: self.load_wsgi()
+2025-04-09T21:11:03.077478+00:00 app[web.1]: File "/app/.heroku/python/lib/python3.9/site-packages/gunicorn/workers/base.py", line 146, in load_wsgi
+2025-04-09T21:11:03.077478+00:00 app[web.1]: self.wsgi = self.app.wsgi()
+2025-04-09T21:11:03.077479+00:00 app[web.1]: File "/app/.heroku/python/lib/python3.9/site-packages/gunicorn/app/base.py", line 67, in wsgi
+2025-04-09T21:11:03.077479+00:00 app[web.1]: self.callable = self.load()
+2025-04-09T21:11:03.077480+00:00 app[web.1]: File "/app/.heroku/python/lib/python3.9/site-packages/gunicorn/app/wsgiapp.py", line 58, in load
+2025-04-09T21:11:03.077480+00:00 app[web.1]: return self.load_wsgiapp()
+2025-04-09T21:11:03.077480+00:00 app[web.1]: File "/app/.heroku/python/lib/python3.9/site-packages/gunicorn/app/wsgiapp.py", line 48, in load_wsgiapp
+2025-04-09T21:11:03.077480+00:00 app[web.1]: return util.import_app(self.app_uri)
+2025-04-09T21:11:03.077481+00:00 app[web.1]: File "/app/.heroku/python/lib/python3.9/site-packages/gunicorn/util.py", line 359, in import_app
+2025-04-09T21:11:03.077481+00:00 app[web.1]: mod = importlib.import_module(module)
+2025-04-09T21:11:03.077481+00:00 app[web.1]: File "/app/.heroku/python/lib/python3.9/importlib/__init__.py", line 127, in import_module
+2025-04-09T21:11:03.077482+00:00 app[web.1]: return _bootstrap._gcd_import(name[level:], package, level)
+2025-04-09T21:11:03.077482+00:00 app[web.1]: File "<frozen importlib._bootstrap>", line 1030, in _gcd_import
+2025-04-09T21:11:03.077482+00:00 app[web.1]: File "<frozen importlib._bootstrap>", line 1007, in _find_and_load
+2025-04-09T21:11:03.077482+00:00 app[web.1]: File "<frozen importlib._bootstrap>", line 986, in _find_and_load_unlocked
+2025-04-09T21:11:03.077483+00:00 app[web.1]: File "<frozen importlib._bootstrap>", line 680, in _load_unlocked
+2025-04-09T21:11:03.077483+00:00 app[web.1]: File "<frozen importlib._bootstrap_external>", line 850, in exec_module
+2025-04-09T21:11:03.077483+00:00 app[web.1]: File "<frozen importlib._bootstrap>", line 228, in _call_with_frames_removed
+2025-04-09T21:11:03.077483+00:00 app[web.1]: File "/app/app.py", line 2, in <module>
+2025-04-09T21:11:03.077483+00:00 app[web.1]: from flask import Flask, jsonify, request
+2025-04-09T21:11:03.077484+00:00 app[web.1]: File "/app/.heroku/python/lib/python3.9/site-packages/flask/__init__.py", line 7, in <module>
+2025-04-09T21:11:03.077484+00:00 app[web.1]: from .app import Flask as Flask
+2025-04-09T21:11:03.077484+00:00 app[web.1]: File "/app/.heroku/python/lib/python3.9/site-packages/flask/app.py", line 28, in <module>
+2025-04-09T21:11:03.077484+00:00 app[web.1]: from . import cli
+2025-04-09T21:11:03.077484+00:00 app[web.1]: File "/app/.heroku/python/lib/python3.9/site-packages/flask/cli.py", line 18, in <module>
+2025-04-09T21:11:03.077484+00:00 app[web.1]: from .helpers import get_debug_flag
+2025-04-09T21:11:03.077485+00:00 app[web.1]: File "/app/.heroku/python/lib/python3.9/site-packages/flask/helpers.py", line 16, in <module>
+2025-04-09T21:11:03.077485+00:00 app[web.1]: from werkzeug.urls import url_quote
+2025-04-09T21:11:03.077486+00:00 app[web.1]: ImportError: cannot import name 'url_quote' from 'werkzeug.urls' (/app/.heroku/python/lib/python3.9/site-packages/werkzeug/urls.py)
+2025-04-09T21:11:03.077590+00:00 app[web.1]: [2025-04-09 21:11:03 +0000] [10] [INFO] Worker exiting (pid: 10)
+2025-04-09T21:11:03.078474+00:00 app[web.1]: [2025-04-09 21:11:03 +0000] [9] [ERROR] Exception in worker process
+2025-04-09T21:11:03.078474+00:00 app[web.1]: Traceback (most recent call last):
+2025-04-09T21:11:03.078474+00:00 app[web.1]: File "/app/.heroku/python/lib/python3.9/site-packages/gunicorn/arbiter.py", line 589, in spawn_worker
+2025-04-09T21:11:03.078474+00:00 app[web.1]: worker.init_process()
+2025-04-09T21:11:03.078475+00:00 app[web.1]: File "/app/.heroku/python/lib/python3.9/site-packages/gunicorn/workers/base.py", line 134, in init_process
+2025-04-09T21:11:03.078475+00:00 app[web.1]: self.load_wsgi()
+2025-04-09T21:11:03.078475+00:00 app[web.1]: File "/app/.heroku/python/lib/python3.9/site-packages/gunicorn/workers/base.py", line 146, in load_wsgi
+2025-04-09T21:11:03.078475+00:00 app[web.1]: self.wsgi = self.app.wsgi()
+2025-04-09T21:11:03.078475+00:00 app[web.1]: File "/app/.heroku/python/lib/python3.9/site-packages/gunicorn/app/base.py", line 67, in wsgi
+2025-04-09T21:11:03.078475+00:00 app[web.1]: self.callable = self.load()
+2025-04-09T21:11:03.078476+00:00 app[web.1]: File "/app/.heroku/python/lib/python3.9/site-packages/gunicorn/app/wsgiapp.py", line 58, in load
+2025-04-09T21:11:03.078476+00:00 app[web.1]: return self.load_wsgiapp()
+2025-04-09T21:11:03.078476+00:00 app[web.1]: File "/app/.heroku/python/lib/python3.9/site-packages/gunicorn/app/wsgiapp.py", line 48, in load_wsgiapp
+2025-04-09T21:11:03.078476+00:00 app[web.1]: return util.import_app(self.app_uri)
+2025-04-09T21:11:03.078476+00:00 app[web.1]: File "/app/.heroku/python/lib/python3.9/site-packages/gunicorn/util.py", line 359, in import_app
+2025-04-09T21:11:03.078476+00:00 app[web.1]: mod = importlib.import_module(module)
+2025-04-09T21:11:03.078477+00:00 app[web.1]: File "/app/.heroku/python/lib/python3.9/importlib/__init__.py", line 127, in import_module
+2025-04-09T21:11:03.078477+00:00 app[web.1]: return _bootstrap._gcd_import(name[level:], package, level)
+2025-04-09T21:11:03.078477+00:00 app[web.1]: File "<frozen importlib._bootstrap>", line 1030, in _gcd_import
+2025-04-09T21:11:03.078477+00:00 app[web.1]: File "<frozen importlib._bootstrap>", line 1007, in _find_and_load
+2025-04-09T21:11:03.078477+00:00 app[web.1]: File "<frozen importlib._bootstrap>", line 986, in _find_and_load_unlocked
+2025-04-09T21:11:03.078478+00:00 app[web.1]: File "<frozen importlib._bootstrap>", line 680, in _load_unlocked
+2025-04-09T21:11:03.078478+00:00 app[web.1]: File "<frozen importlib._bootstrap_external>", line 850, in exec_module
+2025-04-09T21:11:03.078478+00:00 app[web.1]: File "<frozen importlib._bootstrap>", line 228, in _call_with_frames_removed
+2025-04-09T21:11:03.078478+00:00 app[web.1]: File "/app/app.py", line 2, in <module>
+2025-04-09T21:11:03.078478+00:00 app[web.1]: from flask import Flask, jsonify, request
+2025-04-09T21:11:03.078478+00:00 app[web.1]: File "/app/.heroku/python/lib/python3.9/site-packages/flask/__init__.py", line 7, in <module>
+2025-04-09T21:11:03.078479+00:00 app[web.1]: from .app import Flask as Flask
+2025-04-09T21:11:03.078479+00:00 app[web.1]: File "/app/.heroku/python/lib/python3.9/site-packages/flask/app.py", line 28, in <module>
+2025-04-09T21:11:03.078479+00:00 app[web.1]: from . import cli
+2025-04-09T21:11:03.078479+00:00 app[web.1]: File "/app/.heroku/python/lib/python3.9/site-packages/flask/cli.py", line 18, in <module>
+2025-04-09T21:11:03.078479+00:00 app[web.1]: from .helpers import get_debug_flag
+2025-04-09T21:11:03.078479+00:00 app[web.1]: File "/app/.heroku/python/lib/python3.9/site-packages/flask/helpers.py", line 16, in <module>
+2025-04-09T21:11:03.078480+00:00 app[web.1]: from werkzeug.urls import url_quote
+2025-04-09T21:11:03.078480+00:00 app[web.1]: ImportError: cannot import name 'url_quote' from 'werkzeug.urls' (/app/.heroku/python/lib/python3.9/site-packages/werkzeug/urls.py)
+2025-04-09T21:11:03.078579+00:00 app[web.1]: [2025-04-09 21:11:03 +0000] [9] [INFO] Worker exiting (pid: 9)
+2025-04-09T21:11:03.110907+00:00 app[web.1]: Traceback (most recent call last):
+2025-04-09T21:11:03.110914+00:00 app[web.1]: File "/app/.heroku/python/lib/python3.9/site-packages/gunicorn/arbiter.py", line 209, in run
+2025-04-09T21:11:03.111066+00:00 app[web.1]: self.sleep()
+2025-04-09T21:11:03.111067+00:00 app[web.1]: File "/app/.heroku/python/lib/python3.9/site-packages/gunicorn/arbiter.py", line 357, in sleep
+2025-04-09T21:11:03.111137+00:00 app[web.1]: ready = select.select([self.PIPE[0]], [], [], 1.0)
+2025-04-09T21:11:03.111137+00:00 app[web.1]: File "/app/.heroku/python/lib/python3.9/site-packages/gunicorn/arbiter.py", line 242, in handle_chld
+2025-04-09T21:11:03.111181+00:00 app[web.1]: self.reap_workers()
+2025-04-09T21:11:03.111182+00:00 app[web.1]: File "/app/.heroku/python/lib/python3.9/site-packages/gunicorn/arbiter.py", line 525, in reap_workers
+2025-04-09T21:11:03.111248+00:00 app[web.1]: raise HaltServer(reason, self.WORKER_BOOT_ERROR)
+2025-04-09T21:11:03.111271+00:00 app[web.1]: gunicorn.errors.HaltServer: <HaltServer 'Worker failed to boot.' 3>
+2025-04-09T21:11:03.111274+00:00 app[web.1]: 
+2025-04-09T21:11:03.111274+00:00 app[web.1]: During handling of the above exception, another exception occurred:
+2025-04-09T21:11:03.111274+00:00 app[web.1]: 
+2025-04-09T21:11:03.111283+00:00 app[web.1]: Traceback (most recent call last):
+2025-04-09T21:11:03.111283+00:00 app[web.1]: File "/app/.heroku/python/bin/gunicorn", line 8, in <module>
+2025-04-09T21:11:03.111307+00:00 app[web.1]: sys.exit(run())
+2025-04-09T21:11:03.111307+00:00 app[web.1]: File "/app/.heroku/python/lib/python3.9/site-packages/gunicorn/app/wsgiapp.py", line 67, in run
+2025-04-09T21:11:03.111340+00:00 app[web.1]: WSGIApplication("%(prog)s [OPTIONS] [APP_MODULE]").run()
+2025-04-09T21:11:03.111341+00:00 app[web.1]: File "/app/.heroku/python/lib/python3.9/site-packages/gunicorn/app/base.py", line 231, in run
+2025-04-09T21:11:03.111389+00:00 app[web.1]: super().run()
+2025-04-09T21:11:03.111389+00:00 app[web.1]: File "/app/.heroku/python/lib/python3.9/site-packages/gunicorn/app/base.py", line 72, in run
+2025-04-09T21:11:03.111419+00:00 app[web.1]: Arbiter(self).run()
+2025-04-09T21:11:03.111419+00:00 app[web.1]: File "/app/.heroku/python/lib/python3.9/site-packages/gunicorn/arbiter.py", line 229, in run
+2025-04-09T21:11:03.111459+00:00 app[web.1]: self.halt(reason=inst.reason, exit_status=inst.exit_status)
+2025-04-09T21:11:03.111460+00:00 app[web.1]: File "/app/.heroku/python/lib/python3.9/site-packages/gunicorn/arbiter.py", line 342, in halt
+2025-04-09T21:11:03.111512+00:00 app[web.1]: self.stop()
+2025-04-09T21:11:03.111512+00:00 app[web.1]: File "/app/.heroku/python/lib/python3.9/site-packages/gunicorn/arbiter.py", line 393, in stop
+2025-04-09T21:11:03.111567+00:00 app[web.1]: time.sleep(0.1)
+2025-04-09T21:11:03.111567+00:00 app[web.1]: File "/app/.heroku/python/lib/python3.9/site-packages/gunicorn/arbiter.py", line 242, in handle_chld
+2025-04-09T21:11:03.111607+00:00 app[web.1]: self.reap_workers()
+2025-04-09T21:11:03.111607+00:00 app[web.1]: File "/app/.heroku/python/lib/python3.9/site-packages/gunicorn/arbiter.py", line 525, in reap_workers
+2025-04-09T21:11:03.111671+00:00 app[web.1]: raise HaltServer(reason, self.WORKER_BOOT_ERROR)
+2025-04-09T21:11:03.111681+00:00 app[web.1]: gunicorn.errors.HaltServer: <HaltServer 'Worker failed to boot.' 3>
+2025-04-09T21:11:03.175563+00:00 heroku[web.1]: Process exited with status 1
+2025-04-09T21:11:03.197106+00:00 heroku[web.1]: State changed from starting to crashed
+2025-04-09T21:11:03.200730+00:00 heroku[web.1]: State changed from crashed to starting
+2025-04-09T21:11:04.532108+00:00 heroku[web.1]: Starting process with command `gunicorn app:app`
+2025-04-09T21:11:05.126119+00:00 app[web.1]: Python buildpack: Detected 512 MB available memory and 8 CPU cores.
+2025-04-09T21:11:05.126132+00:00 app[web.1]: Python buildpack: Defaulting WEB_CONCURRENCY to 2 based on the available memory.
+2025-04-09T21:11:05.774684+00:00 app[web.1]: [2025-04-09 21:11:05 +0000] [2] [INFO] Starting gunicorn 20.1.0
+2025-04-09T21:11:05.775058+00:00 app[web.1]: [2025-04-09 21:11:05 +0000] [2] [INFO] Listening at: http://0.0.0.0:55882 (2)
+2025-04-09T21:11:05.775106+00:00 app[web.1]: [2025-04-09 21:11:05 +0000] [2] [INFO] Using worker: sync
+2025-04-09T21:11:05.777300+00:00 app[web.1]: [2025-04-09 21:11:05 +0000] [9] [INFO] Booting worker with pid: 9
+2025-04-09T21:11:05.830409+00:00 app[web.1]: [2025-04-09 21:11:05 +0000] [10] [INFO] Booting worker with pid: 10
+2025-04-09T21:11:06.276161+00:00 heroku[web.1]: State changed from starting to up
+2025-04-09T21:11:06.859795+00:00 heroku[web.1]: Process exited with status 3
+2025-04-09T21:11:06.674219+00:00 app[web.1]: [2025-04-09 21:11:06 +0000] [10] [ERROR] Exception in worker process
+2025-04-09T21:11:06.674257+00:00 app[web.1]: Traceback (most recent call last):
+2025-04-09T21:11:06.674257+00:00 app[web.1]: File "/app/.heroku/python/lib/python3.9/site-packages/gunicorn/arbiter.py", line 589, in spawn_worker
+2025-04-09T21:11:06.674258+00:00 app[web.1]: worker.init_process()
+2025-04-09T21:11:06.674258+00:00 app[web.1]: File "/app/.heroku/python/lib/python3.9/site-packages/gunicorn/workers/base.py", line 134, in init_process
+2025-04-09T21:11:06.674259+00:00 app[web.1]: self.load_wsgi()
+2025-04-09T21:11:06.674259+00:00 app[web.1]: File "/app/.heroku/python/lib/python3.9/site-packages/gunicorn/workers/base.py", line 146, in load_wsgi
+2025-04-09T21:11:06.674260+00:00 app[web.1]: self.wsgi = self.app.wsgi()
+2025-04-09T21:11:06.674260+00:00 app[web.1]: File "/app/.heroku/python/lib/python3.9/site-packages/gunicorn/app/base.py", line 67, in wsgi
+2025-04-09T21:11:06.674260+00:00 app[web.1]: self.callable = self.load()
+2025-04-09T21:11:06.674261+00:00 app[web.1]: File "/app/.heroku/python/lib/python3.9/site-packages/gunicorn/app/wsgiapp.py", line 58, in load
+2025-04-09T21:11:06.674261+00:00 app[web.1]: return self.load_wsgiapp()
+2025-04-09T21:11:06.674261+00:00 app[web.1]: File "/app/.heroku/python/lib/python3.9/site-packages/gunicorn/app/wsgiapp.py", line 48, in load_wsgiapp
+2025-04-09T21:11:06.674262+00:00 app[web.1]: return util.import_app(self.app_uri)
+2025-04-09T21:11:06.674262+00:00 app[web.1]: File "/app/.heroku/python/lib/python3.9/site-packages/gunicorn/util.py", line 359, in import_app
+2025-04-09T21:11:06.674262+00:00 app[web.1]: mod = importlib.import_module(module)
+2025-04-09T21:11:06.674262+00:00 app[web.1]: File "/app/.heroku/python/lib/python3.9/importlib/__init__.py", line 127, in import_module
+2025-04-09T21:11:06.674263+00:00 app[web.1]: return _bootstrap._gcd_import(name[level:], package, level)
+2025-04-09T21:11:06.674264+00:00 app[web.1]: File "<frozen importlib._bootstrap>", line 1030, in _gcd_import
+2025-04-09T21:11:06.674264+00:00 app[web.1]: File "<frozen importlib._bootstrap>", line 1007, in _find_and_load
+2025-04-09T21:11:06.674264+00:00 app[web.1]: File "<frozen importlib._bootstrap>", line 986, in _find_and_load_unlocked
+2025-04-09T21:11:06.674264+00:00 app[web.1]: File "<frozen importlib._bootstrap>", line 680, in _load_unlocked
+2025-04-09T21:11:06.674265+00:00 app[web.1]: File "<frozen importlib._bootstrap_external>", line 850, in exec_module
+2025-04-09T21:11:06.674265+00:00 app[web.1]: File "<frozen importlib._bootstrap>", line 228, in _call_with_frames_removed
+2025-04-09T21:11:06.674265+00:00 app[web.1]: File "/app/app.py", line 2, in <module>
+2025-04-09T21:11:06.674265+00:00 app[web.1]: from flask import Flask, jsonify, request
+2025-04-09T21:11:06.674265+00:00 app[web.1]: File "/app/.heroku/python/lib/python3.9/site-packages/flask/__init__.py", line 7, in <module>
+2025-04-09T21:11:06.674266+00:00 app[web.1]: from .app import Flask as Flask
+2025-04-09T21:11:06.674266+00:00 app[web.1]: File "/app/.heroku/python/lib/python3.9/site-packages/flask/app.py", line 28, in <module>
+2025-04-09T21:11:06.674266+00:00 app[web.1]: from . import cli
+2025-04-09T21:11:06.674266+00:00 app[web.1]: File "/app/.heroku/python/lib/python3.9/site-packages/flask/cli.py", line 18, in <module>
+2025-04-09T21:11:06.674266+00:00 app[web.1]: from .helpers import get_debug_flag
+2025-04-09T21:11:06.674267+00:00 app[web.1]: File "/app/.heroku/python/lib/python3.9/site-packages/flask/helpers.py", line 16, in <module>
+2025-04-09T21:11:06.674267+00:00 app[web.1]: from werkzeug.urls import url_quote
+2025-04-09T21:11:06.674267+00:00 app[web.1]: ImportError: cannot import name 'url_quote' from 'werkzeug.urls' (/app/.heroku/python/lib/python3.9/site-packages/werkzeug/urls.py)
+2025-04-09T21:11:06.674330+00:00 app[web.1]: [2025-04-09 21:11:06 +0000] [10] [INFO] Worker exiting (pid: 10)
+2025-04-09T21:11:06.694089+00:00 app[web.1]: [2025-04-09 21:11:06 +0000] [9] [ERROR] Exception in worker process
+2025-04-09T21:11:06.694090+00:00 app[web.1]: Traceback (most recent call last):
+2025-04-09T21:11:06.694090+00:00 app[web.1]: File "/app/.heroku/python/lib/python3.9/site-packages/gunicorn/arbiter.py", line 589, in spawn_worker
+2025-04-09T21:11:06.694091+00:00 app[web.1]: worker.init_process()
+2025-04-09T21:11:06.694091+00:00 app[web.1]: File "/app/.heroku/python/lib/python3.9/site-packages/gunicorn/workers/base.py", line 134, in init_process
+2025-04-09T21:11:06.694092+00:00 app[web.1]: self.load_wsgi()
+2025-04-09T21:11:06.694092+00:00 app[web.1]: File "/app/.heroku/python/lib/python3.9/site-packages/gunicorn/workers/base.py", line 146, in load_wsgi
+2025-04-09T21:11:06.694092+00:00 app[web.1]: self.wsgi = self.app.wsgi()
+2025-04-09T21:11:06.694093+00:00 app[web.1]: File "/app/.heroku/python/lib/python3.9/site-packages/gunicorn/app/base.py", line 67, in wsgi
+2025-04-09T21:11:06.694093+00:00 app[web.1]: self.callable = self.load()
+2025-04-09T21:11:06.694093+00:00 app[web.1]: File "/app/.heroku/python/lib/python3.9/site-packages/gunicorn/app/wsgiapp.py", line 58, in load
+2025-04-09T21:11:06.694093+00:00 app[web.1]: return self.load_wsgiapp()
+2025-04-09T21:11:06.694093+00:00 app[web.1]: File "/app/.heroku/python/lib/python3.9/site-packages/gunicorn/app/wsgiapp.py", line 48, in load_wsgiapp
+2025-04-09T21:11:06.694094+00:00 app[web.1]: return util.import_app(self.app_uri)
+2025-04-09T21:11:06.694094+00:00 app[web.1]: File "/app/.heroku/python/lib/python3.9/site-packages/gunicorn/util.py", line 359, in import_app
+2025-04-09T21:11:06.694094+00:00 app[web.1]: mod = importlib.import_module(module)
+2025-04-09T21:11:06.694094+00:00 app[web.1]: File "/app/.heroku/python/lib/python3.9/importlib/__init__.py", line 127, in import_module
+2025-04-09T21:11:06.694095+00:00 app[web.1]: return _bootstrap._gcd_import(name[level:], package, level)
+2025-04-09T21:11:06.694095+00:00 app[web.1]: File "<frozen importlib._bootstrap>", line 1030, in _gcd_import
+2025-04-09T21:11:06.694095+00:00 app[web.1]: File "<frozen importlib._bootstrap>", line 1007, in _find_and_load
+2025-04-09T21:11:06.694095+00:00 app[web.1]: File "<frozen importlib._bootstrap>", line 986, in _find_and_load_unlocked
+2025-04-09T21:11:06.694095+00:00 app[web.1]: File "<frozen importlib._bootstrap>", line 680, in _load_unlocked
+2025-04-09T21:11:06.694096+00:00 app[web.1]: File "<frozen importlib._bootstrap_external>", line 850, in exec_module
+2025-04-09T21:11:06.694096+00:00 app[web.1]: File "<frozen importlib._bootstrap>", line 228, in _call_with_frames_removed
+2025-04-09T21:11:06.694096+00:00 app[web.1]: File "/app/app.py", line 2, in <module>
+2025-04-09T21:11:06.694096+00:00 app[web.1]: from flask import Flask, jsonify, request
+2025-04-09T21:11:06.694096+00:00 app[web.1]: File "/app/.heroku/python/lib/python3.9/site-packages/flask/__init__.py", line 7, in <module>
+2025-04-09T21:11:06.694097+00:00 app[web.1]: from .app import Flask as Flask
+2025-04-09T21:11:06.694097+00:00 app[web.1]: File "/app/.heroku/python/lib/python3.9/site-packages/flask/app.py", line 28, in <module>
+2025-04-09T21:11:06.694097+00:00 app[web.1]: from . import cli
+2025-04-09T21:11:06.694097+00:00 app[web.1]: File "/app/.heroku/python/lib/python3.9/site-packages/flask/cli.py", line 18, in <module>
+2025-04-09T21:11:06.694097+00:00 app[web.1]: from .helpers import get_debug_flag
+2025-04-09T21:11:06.694097+00:00 app[web.1]: File "/app/.heroku/python/lib/python3.9/site-packages/flask/helpers.py", line 16, in <module>
+2025-04-09T21:11:06.694098+00:00 app[web.1]: from werkzeug.urls import url_quote
+2025-04-09T21:11:06.694107+00:00 app[web.1]: ImportError: cannot import name 'url_quote' from 'werkzeug.urls' (/app/.heroku/python/lib/python3.9/site-packages/werkzeug/urls.py)
+2025-04-09T21:11:06.694233+00:00 app[web.1]: [2025-04-09 21:11:06 +0000] [9] [INFO] Worker exiting (pid: 9)
+2025-04-09T21:11:06.707515+00:00 app[web.1]: [2025-04-09 21:11:06 +0000] [2] [WARNING] Worker with pid 9 was terminated due to signal 15
+2025-04-09T21:11:06.804884+00:00 app[web.1]: [2025-04-09 21:11:06 +0000] [2] [INFO] Shutting down: Master
+2025-04-09T21:11:06.804912+00:00 app[web.1]: [2025-04-09 21:11:06 +0000] [2] [INFO] Reason: Worker failed to boot.
+2025-04-09T21:11:06.885270+00:00 heroku[web.1]: State changed from up to crashed
+2025-04-09T21:11:29.040287+00:00 heroku[router]: at=error code=H10 desc="App crashed" method=GET path="/" host=dog-moon-pot-backend-2c3ced3d21d3.herokuapp.com request_id=2106d216-0b2e-4171-bb58-3bfb5890014f fwd="73.226.98.202" dyno= connect= service= status=503 bytes= protocol=https
+2025-04-09T21:11:00.699369+00:00 app[api]: Release v8 created by user grandblockmaster@gmail.com
+2025-04-09T21:11:00.699369+00:00 app[api]: Set FLASK_APP config vars by user grandblockmaster@gmail.com
