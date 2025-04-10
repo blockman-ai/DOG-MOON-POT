@@ -1,33 +1,21 @@
+from flask import Flask, jsonify
+from flask_cors import CORS
+from datetime import datetime, timedelta
 
-@app.route('/subscribe', methods=['POST'])
-def subscribe():
-    email = request.json.get('email')
-    if email:
-        with open('emails.txt', 'a') as f:
-            f.write(email + '\n')
-        return jsonify({'message': 'Subscribed successfully!'})
-    else:
-        return jsonify({'message': 'Email is missing!'}), 400
+app = Flask(__name__)
+CORS(app)
 
+# Persistent lottery timer clearly
+lottery_end = datetime.utcnow() + timedelta(hours=24)
 
-@app.route('/subscribe', methods=['POST'])
-def subscribe():
-    email = request.json.get('email')
-    if email:
-        with open('emails.txt', 'a') as f:
-            f.write(email + '\n')
-        return jsonify({'message': 'Subscribed successfully!'})
-    else:
-        return jsonify({'message': 'Email is missing!'}), 400
+@app.route('/timer', methods=['GET'])
+def get_timer():
+    remaining = int((lottery_end - datetime.utcnow()).total_seconds())
+    return jsonify({"remaining_seconds": max(remaining, 0)})
 
+@app.route('/submit_entry', methods=['POST'])
+def submit_entry():
+    return jsonify({"status": "received"}), 200
 
-@app.route('/subscribe', methods=['POST'])
-def subscribe():
-    email = request.json.get('email')
-    if email:
-        with open('emails.txt', 'a') as f:
-            f.write(email + '\n')
-        return jsonify({'message': 'Subscribed successfully!'})
-    else:
-        return jsonify({'message': 'Email is missing!'}), 400
-
+if __name__ == '__main__':
+    app.run(debug=True, host='0.0.0.0', port=5000)
