@@ -1,6 +1,6 @@
 async function fetchTimer() {
     try {
-        const response = await fetch('https://dog-moon-pot-backend.herokuapp.com/pot-details.json');
+        const response = await fetch('https://dogmoonpot-app.herokuapp.com/pot-details.json');
         const data = await response.json();
         let remainingSeconds = data.remaining_seconds;
 
