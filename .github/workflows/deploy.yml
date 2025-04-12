@@ -12,7 +12,7 @@ jobs:
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
-      
+
       - name: Install Heroku CLI
         run: |
           curl https://cli-assets.heroku.com/install.sh | sh
@@ -23,5 +23,4 @@ jobs:
           heroku_api_key: ${{ secrets.HEROKU_API_KEY }}
           heroku_app_name: "dogmoonpot-app"
           heroku_email: "your_real_email@domain.com"
-          usedocker: true
-          docker_heroku_process_type: web
+          usedocker: false # <-- change this to false
