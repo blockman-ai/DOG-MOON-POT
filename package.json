@@ -1,20 +1,7 @@
 {
-    "name": "dog-moon-pot-backend",
-    "version": "1.0.0",
-    "description": "Backend for DOG MOON POT",
-    "main": "server.js",
-    "scripts": {
-        "dev": "nodemon server.js",
-        "start": "node server.js"
-    },
-    "dependencies": {
-        "@solana/spl-token": "^0.1.8",
-        "@solana/web3.js": "^1.43.0",
-        "body-parser": "^1.20.3",
-        "cors": "^2.8.5",
-        "express": "^4.21.2"
-    },
-    "devDependencies": {
-        "nodemon": "^3.1.9"
-    }
+  "name": "dog-moon-pot",
+  "version": "1.0.0",
+  "scripts": {
+    "start": "node backend/server.js"
+  }
 }
