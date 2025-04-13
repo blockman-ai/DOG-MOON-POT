@@ -23,13 +23,13 @@ jobs:
         run: npm run build --if-present
 
       - name: Install Heroku CLI
-        run: |
-          curl https://cli-assets.heroku.com/install.sh | sh
+        run: curl https://cli-assets.heroku.com/install.sh | sh
 
       - name: Deploy to Heroku
         env:
           HEROKU_API_KEY: ${{ secrets.HEROKU_API_KEY }}
         run: |
           heroku container:login
-          heroku create dogmoonpot-app || true
-          git push https://heroku:$HEROKU_API_KEY@git.heroku.com/dogmoonpot-app.git main
+          git remote add heroku https://heroku:$HEROKU_API_KEY@git.heroku.com/dogmoonpot-app.git || true
+          git fetch heroku
+          git push heroku main --force
