@@ -29,3 +29,5 @@ jobs:
           heroku_app_name: dogmoonpot-app
           heroku_email: grandblockmaster@gmail.com
           usedocker: false
+          dontuseforce: false
+          dontautocreate: false
