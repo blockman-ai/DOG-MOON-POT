@@ -11,22 +11,22 @@ const port = process.env.PORT || 8000;
 app.use(cors());
 app.use(bodyParser.json());
 
-// Serve static frontend files clearly
+// Correctly serve your static frontend from the proper path
 app.use(express.static(path.join(__dirname, '../frontend')));
 
-// Root route
+// Explicit route for the homepage
 app.get('/', (req, res) => {
-  res.sendFile(path.join(__dirname, '../frontend/index.html'));
+  res.sendFile(path.resolve(__dirname, '../frontend/index.html'));
   });
 
   // Fetch Pot Details
   app.get('/pot-details.json', (req, res) => {
-    res.sendFile(path.join(__dirname, 'data/pot-details.json'));
+    res.sendFile(path.resolve(__dirname, './data/pot-details.json'));
     });
 
     // Fetch Entries
     app.get('/entries.json', (req, res) => {
-      res.sendFile(path.join(__dirname, 'data/entries.json'));
+      res.sendFile(path.resolve(__dirname, './data/entries.json'));
       });
 
       // Enter Lottery
@@ -34,27 +34,28 @@ app.get('/', (req, res) => {
         const { wallet } = req.body;
           if (!wallet) return res.json({ success: false, error: "No wallet provided" });
 
-            const entries = JSON.parse(fs.readFileSync('data/entries.json'));
-              entries.push({ wallet, timestamp: new Date().toISOString() });
-                fs.writeFileSync('data/entries.json', JSON.stringify(entries, null, 2));
+            const entriesPath = path.resolve(__dirname, './data/entries.json');
+              const entries = JSON.parse(fs.readFileSync(entriesPath));
+                entries.push({ wallet, timestamp: new Date().toISOString() });
+                  fs.writeFileSync(entriesPath, JSON.stringify(entries, null, 2));
 
-                  res.json({ success: true });
-                  });
+                    res.json({ success: true });
+                    });
 
-                  // Subscribe Email
-                  app.post('/subscribe', (req, res) => {
-                    const { email } = req.body;
-                      if (!email) return res.json({ success: false, error: "Email required" });
+                    // Subscribe Emailecho '[]' > backend/data/entries.json
+                    app.post('/subscribe', (req, res) => {
+                      const { email } = req.body;
+                        if (!email) return res.json({ success: false, error: "Email required" });
 
-                        const subscribers = JSON.parse(fs.readFileSync('data/subscribers.json'));
-                          if (!subscribers.includes(email)) {
-                              subscribers.push(email);
-                                  fs.writeFileSync('data/subscribers.json', JSON.stringify(subscribers, null, 2));
-                                    }
+                          const subscribersPath = path.resolve(__dirname, './data/subscribers.json');
+                            const subscribers = JSON.parse(fs.readFileSync(subscribersPath));
+                              if (!subscribers.includes(email)) {
+                                  subscribers.push(email);
+                                      fs.writeFileSync(subscribersPath, JSON.stringify(subscribers, null, 2));
+                                        }
 
-                                      res.json({ success: true });
-                                      });
+                                          res.json({ success: true });
+                                          });
 
-                                      // Start Server
-                                      app.listen(port, () => console.log(`Server running on port ${port}`));
-                                      
+                                          // Start Server
+                                          app.listen(port, () => console.log(`Server clearly running on port ${port}`));
