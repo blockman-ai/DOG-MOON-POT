@@ -1,0 +1,20 @@
+# Append /status endpoint to app.py
+status_api_code = """
+
+@app.route('/status', methods=['GET'])
+def get_status():
+    entries, status = load_data()
+        return jsonify({
+                    "success": True,
+                            "totalPotAmount": status.get("totalPotAmount", 0),
+                                    "entriesCount": len(entries)
+        })
+        """
+
+        # Append it to the end of current app.py file
+        with open(updated_app_py_path, "a", encoding="utf-8") as f:
+            f.write("\n" + status_api_code.strip())
+
+            "Added /status endpoint to app.py"
+            
+        })

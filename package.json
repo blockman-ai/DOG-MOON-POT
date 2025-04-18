@@ -1,1 +1,1 @@
-{"scripts":{"start":"node backend/server.js"},"dependencies":{"@solana/spl-token":"^0.4.13","@solana/web3.js":"^1.98.0","body-parser":"^2.2.0","cors":"^2.8.5","express":"^5.1.0"}}
+{"scripts":{"start":"node backend/server.js"},"dependencies":{"@solana/spl-token":"^0.1.8","@solana/web3.js":"^1.43.0","axios":"^1.8.4","body-parser":"^2.2.0","cors":"^2.8.5","dotenv":"^16.5.0","express":"^5.1.0"},"name":"dog-moon-pot","version":"1.0.0","description":"","main":"frontend-wallet-fix.js","directories":{"doc":"docs"},"keywords":[],"author":"","license":"ISC"}

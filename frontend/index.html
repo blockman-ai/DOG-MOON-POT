@@ -39,6 +39,24 @@
         button:hover { background-color: #00ffaa; }
         .timer { font-size: 1.6em; margin-bottom: 10px; }
         input { padding: 10px; margin-top: 10px; border-radius: 8px; border: 1px solid #00ffee44; background: #111; color: #00ffee; font-family: 'Inter'; }
+        .notification {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            background-color: #00ffee;
+            color: #000;
+            padding: 15px 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px #00ffee99;
+            font-family: 'Orbitron', sans-serif;
+            font-size: 1em;
+            z-index: 1000;
+            display: none;
+        }
+        .notification.error {
+            background-color: #ff4d4d;
+            color: #fff;
+        }
     </style>
 </head>
 <body>
@@ -75,58 +93,135 @@
     <button id="subscribe">Subscribe</button>
 </div>
 
+<div id="notification" class="notification"></div>
+
 <script>
-// Timer Logic
-const timerEl = document.getElementById("timer");
-const end = new Date(Date.now() + 86400000);
-setInterval(() => {
-    const diff = end - Date.now();
-    const hrs = String(Math.floor(diff / 3600000)).padStart(2,'0');
-    const mins = String(Math.floor(diff % 3600000 / 60000)).padStart(2,'0');
-    const secs = String(Math.floor(diff % 60000 / 1000)).padStart(2,'0');
-    timerEl.textContent = `${hrs}:${mins}:${secs}`;
-}, 1000);
+    // Function to show notifications
+    function showNotification(message, isError = false) {
+        const notification = document.getElementById("notification");
+        notification.textContent = message;
+        notification.className = isError ? "notification error" : "notification";
+        notification.style.display = "block";
 
-// Phantom Wallet Integration
-let walletAddress = null;
-document.getElementById('connectWallet').onclick = async () => {
-    if(window.solana && window.solana.isPhantom){
-        const resp = await window.solana.connect();
-        walletAddress = resp.publicKey.toString();
-        document.getElementById('connectedAddress').textContent = walletAddress;
-        document.getElementById('enterPot').style.display = 'block';
-    } else { alert("Install Phantom Wallet!"); }
-};
+        // Hide the notification after 3 seconds
+        setTimeout(() => {
+            notification.style.display = "none";
+        }, 3000);
+    }
 
-// Enter Pot
-const backendURL = "https://your-heroku-app-url.herokuapp.com";
-document.getElementById('enterPot').onclick = async () => {
-    const res = await fetch(`${backendURL}/enter`,{
-        method:'POST', headers:{'Content-Type':'application/json'}, body:JSON.stringify({wallet: walletAddress})
-    });
-    const data = await res.json();
-    if(data.success){ alert("Entered successfully!"); }
-    else { alert("Entry failed: " + data.error); }
-};
+    // Timer Logic
+    const timerEl = document.getElementById("timer");
+    fetch("http://localhost:5000/timer")
+        .then((res) => res.json())
+        .then((data) => {
+            console.log("Timer data fetched successfully:", data);
+            let remainingSeconds = data.remaining_seconds;
+            const countdown = setInterval(() => {
+                if (remainingSeconds <= 0) {
+                    timerEl.textContent = "Lottery ended!";
+                    clearInterval(countdown);
+                    return;
+                }
+                const hrs = String(Math.floor(remainingSeconds / 3600)).padStart(2, '0');
+                const mins = String(Math.floor((remainingSeconds % 3600) / 60)).padStart(2, '0');
+                const secs = String(remainingSeconds % 60).padStart(2, '0');
+                timerEl.textContent = `${hrs}:${mins}:${secs}`;
+                remainingSeconds--;
+            }, 1000);
+        })
+        .catch((err) => {
+            console.error("Failed to fetch timer:", err);
+            timerEl.textContent = "Error fetching timer!";
+            showNotification("Error fetching timer!", true);
+        });
 
-// Email Subscription
-document.getElementById('subscribe').onclick = async () => {
-    const email = document.getElementById('email').value;
-    const res = await fetch(`${backendURL}/subscribe`,{
-        method:'POST', headers:{'Content-Type':'application/json'}, body:JSON.stringify({email})
-    });
-    const data = await res.json();
-    alert(data.success ? "Subscribed!" : "Subscription failed");
-};
+    // Phantom Wallet Integration
+    let walletAddress = null;
+    document.getElementById('connectWallet').onclick = async () => {
+        if (window.solana && window.solana.isPhantom) {
+            try {
+                const resp = await window.solana.connect();
+                walletAddress = resp.publicKey.toString();
+                document.getElementById('connectedAddress').textContent = walletAddress;
+                document.getElementById('enterPot').style.display = 'block';
+                console.log("Wallet connected successfully:", walletAddress);
+                showNotification("Wallet connected successfully!");
+            } catch (err) {
+                console.error("Failed to connect wallet:", err);
+                showNotification("Failed to connect wallet!", true);
+            }
+        } else {
+            alert("Install Phantom Wallet!");
+            showNotification("Phantom Wallet is not installed!", true);
+        }
+    };
 
-// Dynamic Pot Updates (Placeholder)
-fetch(`${backendURL}/status`).then(res=>res.json()).then(data=>{
-    document.getElementById("currentPot").textContent=`${data.pot} DOG`;
-    document.getElementById("entryCount").textContent=data.entries;
-    document.getElementById("pastWinners").innerHTML=data.winners.map(w=>`<p>${w}</p>`).join('');
-});
+    // Enter Pot
+    document.getElementById('enterPot').onclick = async () => {
+        if (!walletAddress) {
+            showNotification("Please connect your wallet first!", true);
+            return;
+        }
+        try {
+            const res = await fetch("http://localhost:5000/enter", {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ wallet: walletAddress, amount: 10 })
+            });
+            const data = await res.json();
+            if (data.success) {
+                showNotification("Entered pot successfully!");
+                console.log("Entered pot successfully:", data);
+            } else {
+                showNotification("Entry failed: " + data.message, true);
+                console.error("Failed to enter pot:", data.message);
+            }
+        } catch (err) {
+            console.error("Error during pot entry:", err);
+            showNotification("Error during pot entry!", true);
+        }
+    };
+
+    // Email Subscription
+    document.getElementById('subscribe').onclick = async () => {
+        const email = document.getElementById('email').value;
+        if (!email) {
+            showNotification("Please enter a valid email address!", true);
+            return;
+        }
+        try {
+            const res = await fetch("http://localhost:5000/subscribe", {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ email })
+            });
+            const data = await res.json();
+            if (data.success) {
+                showNotification("Subscribed successfully!");
+                console.log("Subscription successful:", data);
+            } else {
+                showNotification("Subscription failed: " + data.message, true);
+                console.error("Failed to subscribe:", data.message);
+            }
+        } catch (err) {
+            console.error("Error during subscription:", err);
+            showNotification("Error during subscription!", true);
+        }
+    };
+
+    // Dynamic Pot Updates
+    fetch("http://localhost:5000/pot-details.json")
+        .then((res) => res.json())
+        .then((data) => {
+            document.getElementById("currentPot").textContent = `${data.potAmount} DOG`;
+            console.log("Pot details fetched successfully:", data);
+            showNotification("Pot details updated!");
+        })
+        .catch((err) => {
+            console.error("Failed to fetch pot details:", err);
+            showNotification("Failed to fetch pot details!", true);
+        });
 </script>
 
-<script src="frontend-wallet-fix.js"></script>
 </body>
 </html>
