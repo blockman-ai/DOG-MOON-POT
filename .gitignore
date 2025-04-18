@@ -1,2 +1,5 @@
 node_modules/
 .swp
+node_modules/
+backend/node_modules/
+backend-nodejs/node_modules/
